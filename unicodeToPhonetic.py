@@ -1,3 +1,14 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.io.wavfile import read, write
+#from IPython.display import Audio
+from numpy.fft import fft, ifft
+#%matplotlib inline
+import random
+import copy
+import multiprocessing
+from playsound import playsound
+import math
 import sys
 import os
 import time
@@ -48,12 +59,27 @@ def stringToIPA(string):
         outstring += wordToAdd[1] + " "
     return outstring
 
-
+def IPAStringToWAV(string):
+    out = np.empty([])
+    for ch in string:
+        try:
+            fileName = "sounds/" + ch + ".wav"
+            print(fileName)
+            Fs, data = read(fileName)
+            data = data[:,0]
+            out = np.concatenate((out, data), axis=None)
+        except:
+            print("failed char")
+    write("out.wav", Fs, out)
+    playsound("out.wav")
+    
+        
 
 
 def main():
     IPAString = stringToIPA("hello")    
     print(IPAString)
+    IPAStringToWAV(IPAString)
     # needs to first convert string to IPA using .txt dictionary i found on github
     # then needs to convert IPA to speech using dictionary that maps IPA characters to recorded waveforms from synth
     # for each letter, append to numpy array until done
