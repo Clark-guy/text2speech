@@ -13,6 +13,15 @@ import sys
 import os
 import time
 
+
+def plotWav(data):
+    plt.figure()
+    plt.plot(data)
+    plt.xlabel("index")
+    plt.ylabel("Amplitude")
+    plt.title("waveform of audio")
+    plt.show()
+
 def IPAStringToWAV(string):
     Fs = 44100
     out = np.empty([])
@@ -28,14 +37,24 @@ def IPAStringToWAV(string):
     write("out.wav", Fs, out)
     playAudio("out.wav")
 
+
 def main():
-    filename = "k.wav"
+    filename = "ɑ.wav"
+    playsound("ɑ.wav")
     Fs, data = read(filename)
+    data = data[:,0]
     out = np.empty([])
-    for x in range(10):
-        out = np.concatenate((out, data), axis=None)
-    write("out.wav", Fs, out)
+    out = np.concatenate((out, data), axis=None)
+    plotWav(data)
+    plotWav(out)
+    out = np.delete(out, 0)
+    print(np.array_equal(data, out))
+    print(data.shape)
+    print(out.shape)
+    write("out.wav", Fs, out.astype(np.int32))
     playsound("out.wav")
-    
+
+
+
 if __name__ == "__main__":
     main()

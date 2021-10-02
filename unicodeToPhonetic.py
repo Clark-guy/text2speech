@@ -44,6 +44,7 @@ def buildDict():
         splitline = line.split("\t")
         splitline[1] = splitline[1][:-1]
         engToIPADict[splitline[0]] = splitline[1]
+    f.close()
     return engToIPADict
 
 def stringToIPA(string):
@@ -70,7 +71,7 @@ def IPAStringToWAV(string):
             out = np.concatenate((out, data), axis=None)
         except:
             print("failed char")
-    write("out.wav", Fs, out)
+    write("out.wav", Fs, out.astype(np.int32))
     playsound("out.wav")
     
         
