@@ -48,7 +48,7 @@ def buildDict():
     return engToIPADict
 
 def stringToIPA(string):
-    string = "hello julia you are cool"
+    string = "julia and james are the coolest"
     outstring = ""
     words = string.split(" ")
     IPADict = buildDict()
@@ -62,7 +62,7 @@ def IPAStringToWAV(string):
     out = np.empty([])
     for ch in string:
         if ch == ' ':
-            out = np.concatenate((out, np.zeros(50000)), axis=None)
+            out = np.concatenate((out, np.zeros(10000)), axis=None)
         else:
             try:
                 fileName = "sounds/" + ch + ".wav"
@@ -72,6 +72,8 @@ def IPAStringToWAV(string):
                 
             except:
                 print("failed char: ", ch)
+                if ch == 'g':
+                    print("??")
     write("out.wav", Fs, out.astype(np.int32))
     playsound("out.wav")
     

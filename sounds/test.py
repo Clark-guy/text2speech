@@ -39,8 +39,8 @@ def IPAStringToWAV(string):
 
 
 def main():
-    filename = "ɑ.wav"
-    playsound("ɑ.wav")
+    filename = "g.wav"
+    playsound("g.wav")
     Fs, data = read(filename)
     data = data[:,0]
     out = np.empty([])
