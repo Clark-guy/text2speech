@@ -1,9 +1,0 @@
-how to make text to speech
-
-* find a basic dictionary
-* go through all words in dictionary, scraping phonetic translation from google into new dictionary (english to IPA)
-* record a sound for each basic phonetic sound
-
-
-read this for more unicode stuff
-https://docs.python.org/3/howto/unicode.html
