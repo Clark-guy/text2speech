@@ -48,7 +48,7 @@ def buildDict():
     return engToIPADict
 
 def stringToIPA(string):
-    string = "zero one two three four five six seven eight nine ten"
+    string = "zero one two three four five six seven eight nine"
     outstring = ""
     words = string.split(" ")
     IPADict = buildDict()
